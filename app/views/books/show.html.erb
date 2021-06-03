@@ -1,0 +1,9 @@
+<div class="post-body">
+  <%= attachment_image_tag @book, :image %>
+  <p>Title：<%= @post_image.shop_name %></p>
+  <p>Body：<%= @post_image.caption %></p>
+  <p><%= @book.user.name %></p>
+  <% if @book.user == current_user %>
+    <%= link_to "Destroy", book_path(@book), method: :delete %>
+  <% end %>
+</div>
