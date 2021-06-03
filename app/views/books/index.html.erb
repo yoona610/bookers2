@@ -1,21 +1,31 @@
-<div class="profile-container">
-  <h3 class="profile-name">Name:<%= @user.name %></h3>
-  <h3 class="profile-introduction">Introduction:<%= @user.introduction %></h3>
-  <%= attachment_image_tag user, :image %>
-  <%= attachment_image_tag book.user, :profile_image, :fill, 60, 60, fallback: "no_image.jpg" %>
-  <% if @user.id == current_user.id %>
-    <p><%= link_to "Edit", edit_user_path(@user) %></p>
-  <% end %>
-</div>
+<div class="col-md-8 offset-md-1">
+      <h2>Books</h2>
+      <table class="table table-hover table-inverse">
+  <thead>
+    <tr>
+      <th></th>
+      <th>Title</th>
+      <th>Opinion</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
 
-<% @books.each do |book| %>
-<div>
-  <%= attachment_image_tag user, :image %>
-  <%= attachment_image_tag book.user, :profile_image, :fill, 60, 60, fallback: "no_image.jpg" %>
-  <%= link_to book_path(book.id) do %>
-  <p>Title：<%= book.title %></p>
+  <% @books.each do |book| %>
+  <tbody>
+      <tr>
+        <td>
+            <%= attachment_image_tag book.user, :profile_image, :fill, 60, 60, fallback: "no_image.jpg" %>
+        </td>
+        <td>
+            <%= link_to book_path(book.id) do %>
+              <p><%= book.title %></p>
+            <% end %>
+        </td>
+        <td>
+            <p><%= book.body %></p>
+        </td>
+      </tr>
+  </tbody>
   <% end %>
-  <p>Opinion：<%= book.body %></p>
+</table>
 </div>
-<% end %>
-<%= paginate @books %>
