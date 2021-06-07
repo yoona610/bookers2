@@ -3,7 +3,7 @@
   	<h1>Editing Book</h1>
 
 <% if @book.errors.any? %>
-  <%= @book.errors.count %>件のエラーが発生しました
+  <%= @book.errors.count %>error prohibited this obj from being saved:
   <% @book.errors.full_messages.each do |message| %>
     <%= message %>
   <% end %>
@@ -22,12 +22,21 @@
     <%= f.submit 'Update Book' %>
   </div>
   <% end %>
-  	<%= link_to book_path(@book) do %>
-  	  <p>Show</p>
-  	<% end %>
-  	|
-  	<%= link_to books_path do %>
-  	  <p>Back</p>
-  	<% end %>
+
+  <table class="table">
+  		<tbody>
+        <td>
+  	      <%= link_to book_path(@book) do %>
+  	        <p>Show</p>
+  	      <% end %>
+  	    </td>
+  	    |
+  	    <td>
+  	      	<%= link_to books_path do %>
+  	          <p>Back</p>
+  	        <% end %>
+  	    </td>
+  	   </tbody>
+  </table>
   </div>
 </div>
